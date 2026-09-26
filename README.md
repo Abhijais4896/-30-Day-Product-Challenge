@@ -48,7 +48,7 @@ Learning
 
 | Day | Product                      | Industry             | Case Study | Prototype |
 | :-: | ---------------------------- | -------------------- | :--------: | :-------: |
-|  01 | [Paytm UPI](./Day-01-Paytm/) | Fintech & Payments   |      ✅     |     🔗    |
+|  01 | [Paytm UPI](https://github.com/Abhijais4896/-30-Day-Product-Challenge/tree/main/Day%201) | Fintech & Payments   |      ✅     |     https://dapper-puffpuff-4e9c26.netlify.app/  |
 |  02 | Zoho CRM                     | B2B SaaS             |      ⏳     |     —     |
 |  03 | Amazon                       | E-commerce           |      ⏳     |     —     |
 |  04 | Practo                       | Healthcare           |      ⏳     |     —     |
