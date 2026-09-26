@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paytm UPI — Payment Resolution Tracker | Product Design Prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Case Study Top Presentation Bar -->
+  <header class="presentation-header">
+    <div class="header-left">
+      <div class="brand-pill">
+        <span class="paytm-badge">Paytm</span>
+        <span class="badge-divider">/</span>
+        <span class="project-tag">Product Case Study</span>
+      </div>
+      <h1 class="header-title">Payment Resolution Tracker</h1>
+      <span class="ux-tagline">Solving uncertainty in delayed UPI refunds</span>
+    </div>
+
+    <div class="header-controls">
+      <div class="screen-selector">
+        <button class="screen-tab active" data-target="screen-1" title="Screen 1: Payment Status">1. Payment Status</button>
+        <button class="screen-tab" data-target="screen-2" title="Screen 2: What happened?">2. Timeline</button>
+        <button class="screen-tab" data-target="screen-3" title="Screen 3: Where is my money?">3. Money Flow</button>
+        <button class="screen-tab" data-target="screen-4" title="Screen 4: Something went wrong">4. Delayed Notice</button>
+        <button class="screen-tab" data-target="screen-5" title="Screen 5: Escalate issue">5. Escalate & Confirmation</button>
+      </div>
+
+      <div class="action-buttons">
+        <button id="toggle-annotations-btn" class="secondary-btn" title="Toggle Case Study Annotations">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <span class="btn-text">UX Insights</span>
+        </button>
+        <button id="reset-flow-btn" class="secondary-btn" title="Reset flow to Screen 1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+          <span class="btn-text">Reset Flow</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Showcase Container -->
+  <main class="showcase-container">
+    
+    <!-- Mobile Device Mockup -->
+    <div class="device-column">
+      <div class="phone-frame">
+        <!-- Phone Speaker & Camera Notch -->
+        <div class="phone-notch">
+          <div class="speaker"></div>
+          <div class="camera"></div>
+        </div>
+
+        <!-- Phone Status Bar -->
+        <div class="status-bar">
+          <span class="status-time">9:41</span>
+          <div class="status-icons">
+            <span class="network-name">Jio 5G</span>
+            <svg class="signal-icon" width="16" height="12" viewBox="0 0 16 12" fill="currentColor">
+              <rect x="1" y="8" width="2.5" height="4" rx="0.5" />
+              <rect x="4.5" y="6" width="2.5" height="6" rx="0.5" />
+              <rect x="8" y="3.5" width="2.5" height="8.5" rx="0.5" />
+              <rect x="11.5" y="0.5" width="2.5" height="11.5" rx="0.5" />
+            </svg>
+            <svg class="wifi-icon" width="14" height="12" viewBox="0 0 14 12" fill="currentColor">
+              <path d="M7 10a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-4-4a5.6 5.6 0 0 1 8 0 .8.8 0 0 1-.2 1.2.8.8 0 0 1-1.1-.1 4 4 0 0 0-5.4 0 .8.8 0 0 1-1.1.1.8.8 0 0 1-.2-1.2zm-2.5-3a9.2 9.2 0 0 1 13 0 .8.8 0 0 1-.2 1.2.8.8 0 0 1-1.1-.1 7.6 7.6 0 0 0-10.4 0 .8.8 0 0 1-1.1.1.8.8 0 0 1-.2-1.2z" />
+            </svg>
+            <div class="battery-icon">
+              <div class="battery-level"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- App Screen Viewport -->
+        <div class="screens-viewport">
+
+          <!-- ================= SCREEN 1: PAYMENT STATUS ================= -->
+          <section id="screen-1" class="screen-view active">
+            <!-- App Bar Header -->
+            <header class="app-nav-bar">
+              <button class="nav-icon-btn disabled" aria-label="Back">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              </button>
+              <div class="nav-center-title">
+                <span class="nav-small-brand">Paytm UPI</span>
+              </div>
+              <button class="nav-text-btn" id="s1-help-btn">Help</button>
+            </header>
+
+            <div class="screen-content scrollable">
+              <!-- Top Bank / Security Strip -->
+              <div class="security-meta-bar">
+                <div class="upi-lock-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                  <span>UPI 2.0 Secure</span>
+                </div>
+                <span class="upi-ref">UPI Ref: 426892301928</span>
+              </div>
+
+              <!-- Main Status Hero Card -->
+              <div class="card status-hero-card">
+                <div class="status-pill status-pill-warning">
+                  <span class="pulse-dot"></span>
+                  <span class="status-label">Refund in progress</span>
+                </div>
+
+                <div class="amount-display">
+                  <span class="currency-symbol">₹</span>
+                  <span class="amount-value">2,800</span>
+                </div>
+                <h2 class="hero-screen-title">Payment of ₹2,800</h2>
+
+                <p class="hero-supporting-text">
+                  The merchant has confirmed your refund. We're waiting for the money to reach your bank account.
+                </p>
+
+                <div class="expected-date-banner">
+                  <div class="banner-icon-col">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  </div>
+                  <div class="banner-text-col">
+                    <span class="banner-caption">Expected by</span>
+                    <span class="banner-highlight">28 September</span>
+                  </div>
+                </div>
+
+                <!-- Primary CTA -->
+                <button class="primary-btn" id="btn-track-refund">
+                  <span>Track refund</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+              </div>
+
+              <!-- Simple Transaction Summary -->
+              <div class="card transaction-summary-card">
+                <div class="card-header-row">
+                  <h3 class="section-title">Transaction Details</h3>
+                  <span class="receipt-tag">Order #JM-84920</span>
+                </div>
+
+                <div class="summary-list">
+                  <div class="summary-item">
+                    <span class="label">Merchant</span>
+                    <div class="value-merchant">
+                      <span class="merchant-badge">J</span>
+                      <span class="value-text bold">Jiomart</span>
+                    </div>
+                  </div>
+                  <div class="summary-item">
+                    <span class="label">Original payment</span>
+                    <span class="value-text">₹2,800</span>
+                  </div>
+                  <div class="summary-item highlight-item">
+                    <span class="label">Refund amount</span>
+                    <span class="value-text refund-accent">₹2,800</span>
+                  </div>
+                  <div class="summary-item">
+                    <span class="label">Payment date</span>
+                    <span class="value-text">25 September</span>
+                  </div>
+                  <div class="summary-item bank-item">
+                    <span class="label">Paid via</span>
+                    <span class="value-text muted-text">HDFC Bank •••• 4092 (UPI)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Clarity Guarantee Note -->
+              <div class="trust-footer-note">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>Refunds are directly settled into your source account</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- ================= SCREEN 2: WHAT HAPPENED? ================= -->
+          <section id="screen-2" class="screen-view">
+            <!-- App Bar Header -->
+            <header class="app-nav-bar">
+              <button class="nav-icon-btn" id="s2-back-btn" aria-label="Back to Payment Status">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              </button>
+              <div class="nav-center-title">
+                <span class="nav-title-main">Refund Tracker</span>
+              </div>
+              <button class="nav-text-btn" id="s2-help-btn">Help</button>
+            </header>
+
+            <div class="screen-content scrollable">
+              <!-- Top Overview Header -->
+              <div class="page-intro-header">
+                <div class="pill-indicator">Audit Trail</div>
+                <h2 class="page-main-heading">What happened?</h2>
+                <p class="page-subtitle">A verified step-by-step log of your ₹2,800 Jiomart transaction.</p>
+              </div>
+
+              <!-- Vertical Transaction Timeline -->
+              <div class="card timeline-card">
+                <div class="timeline-container">
+
+                  <!-- Step 1: 25 Sep -->
+                  <div class="timeline-step completed">
+                    <div class="step-marker">
+                      <div class="marker-circle">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                      </div>
+                      <div class="marker-line"></div>
+                    </div>
+                    <div class="step-body">
+                      <div class="step-meta">
+                        <span class="step-date">25 Sep</span>
+                        <span class="step-status-tag">Completed</span>
+                      </div>
+                      <h4 class="step-title">Payment completed</h4>
+                      <p class="step-desc">₹2,800 paid to merchant</p>
+                    </div>
+                  </div>
+
+                  <!-- Step 2: 26 Sep -->
+                  <div class="timeline-step completed">
+                    <div class="step-marker">
+                      <div class="marker-circle">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                      </div>
+                      <div class="marker-line"></div>
+                    </div>
+                    <div class="step-body">
+                      <div class="step-meta">
+                        <span class="step-date">26 Sep</span>
+                        <span class="step-status-tag">Merchant Action</span>
+                      </div>
+                      <h4 class="step-title">Order partially cancelled</h4>
+                      <p class="step-desc">Merchant cancelled part of the order</p>
+                    </div>
+                  </div>
+
+                  <!-- Step 3: 26 Sep -->
+                  <div class="timeline-step completed">
+                    <div class="step-marker">
+                      <div class="marker-circle">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                      </div>
+                      <div class="marker-line"></div>
+                    </div>
+                    <div class="step-body">
+                      <div class="step-meta">
+                        <span class="step-date">26 Sep</span>
+                        <span class="step-status-tag">Initiated</span>
+                      </div>
+                      <h4 class="step-title">Refund initiated</h4>
+                      <p class="step-desc">Merchant initiated ₹2,800 refund</p>
+                    </div>
+                  </div>
+
+                  <!-- Step 4: 27 Sep -->
+                  <div class="timeline-step active-step">
+                    <div class="step-marker">
+                      <div class="marker-circle">
+                        <div class="active-inner-dot"></div>
+                      </div>
+                      <div class="marker-line pending-line"></div>
+                    </div>
+                    <div class="step-body">
+                      <div class="step-meta">
+                        <span class="step-date">27 Sep</span>
+                        <span class="step-status-tag current-tag">Current Stage</span>
+                      </div>
+                      <h4 class="step-title">Refund processing</h4>
+                      <p class="step-desc">Refund is being processed</p>
+                    </div>
+                  </div>
+
+                  <!-- Step 5: 28 Sep -->
+                  <div class="timeline-step pending">
+                    <div class="step-marker">
+                      <div class="marker-circle">
+                        <div class="hollow-dot"></div>
+                      </div>
+                    </div>
+                    <div class="step-body">
+                      <div class="step-meta">
+                        <span class="step-date">28 Sep</span>
+                        <span class="step-status-tag">Next Step</span>
+                      </div>
+                      <h4 class="step-title">Expected in bank account</h4>
+                      <p class="step-desc">Direct credit to HDFC Bank A/c •••• 4092</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Reassurance Callout -->
+              <div class="reassurance-box">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                <p>We'll update you when the refund moves to the next stage.</p>
+              </div>
+
+              <!-- Bottom CTA -->
+              <div class="screen-footer-actions">
+                <button class="primary-btn" id="btn-where-is-money">
+                  <span>Where is my money?</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- ================= SCREEN 3: WHERE IS MY MONEY? ================= -->
+          <section id="screen-3" class="screen-view">
+            <!-- App Bar Header -->
+            <header class="app-nav-bar">
+              <button class="nav-icon-btn" id="s3-back-btn" aria-label="Back to Timeline">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              </button>
+              <div class="nav-center-title">
+                <span class="nav-title-main">Money Location</span>
+              </div>
+              <button class="nav-text-btn" id="s3-help-btn">Help</button>
+            </header>
+
+            <div class="screen-content scrollable">
+              <!-- Header Section -->
+              <div class="page-intro-header">
+                <h2 class="page-main-heading">Where is my money?</h2>
+              </div>
+
+              <!-- Visual Flow Diagram between Entities -->
+              <div class="flow-entities-card">
+                <div class="entity-item completed">
+                  <div class="entity-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                  </div>
+                  <span class="entity-name">Jiomart</span>
+                  <span class="entity-status">Refund Approved</span>
+                </div>
+
+                <div class="flow-connector active">
+                  <div class="connector-track">
+                    <div class="connector-pulse"></div>
+                  </div>
+                  <span class="flow-amt">₹2,800</span>
+                </div>
+
+                <div class="entity-item current">
+                  <div class="entity-icon highlight">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                  </div>
+                  <span class="entity-name">Payment Network</span>
+                  <span class="entity-status pulse-text">Processing</span>
+                </div>
+
+                <div class="flow-connector pending">
+                  <div class="connector-track"></div>
+                </div>
+
+                <div class="entity-item pending">
+                  <div class="entity-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                  </div>
+                  <span class="entity-name">Your Bank</span>
+                  <span class="entity-status">Pending Credit</span>
+                </div>
+              </div>
+
+              <!-- Main Explanation Card -->
+              <div class="card explanation-card">
+                <div class="main-msg-box">
+                  <div class="info-bubble-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                  </div>
+                  <p class="main-msg-text">
+                    Your ₹2,800 refund is currently being processed between the payment system and your bank.
+                  </p>
+                </div>
+
+                <div class="secondary-msg-row">
+                  <div class="check-pill">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <p class="secondary-msg-text">
+                    You don't need to contact the merchant again right now.
+                  </p>
+                </div>
+
+                <div class="expected-update-banner">
+                  <span class="meta-label">Next expected update:</span>
+                  <span class="meta-value">28 September</span>
+                </div>
+              </div>
+
+              <!-- What Happens Next Section -->
+              <div class="card next-steps-card">
+                <h3 class="section-title">What happens next?</h3>
+
+                <ol class="ordered-step-list">
+                  <li class="ordered-item active">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                      <span class="item-title">Refund is processed</span>
+                      <span class="item-sub">Payment gateway validates the return batch</span>
+                    </div>
+                  </li>
+                  <li class="ordered-item">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                      <span class="item-title">Bank receives the refund</span>
+                      <span class="item-sub">NPCI switches the transaction to HDFC Bank</span>
+                    </div>
+                  </li>
+                  <li class="ordered-item">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                      <span class="item-title">Money is credited to your account</span>
+                      <span class="item-sub">You'll receive an SMS confirmation from your bank</span>
+                    </div>
+                  </li>
+                </ol>
+              </div>
+
+              <!-- Primary & Secondary CTA -->
+              <div class="screen-footer-actions">
+                <button class="primary-btn" id="btn-got-it">
+                  <span>Got it</span>
+                </button>
+                <button class="subtle-link-btn" id="btn-something-wrong">
+                  <span>Something doesn't look right</span>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- ================= SCREEN 4: SOMETHING WENT WRONG ================= -->
+          <section id="screen-4" class="screen-view">
+            <!-- App Bar Header -->
+            <header class="app-nav-bar">
+              <button class="nav-icon-btn" id="s4-back-btn" aria-label="Back to Where is my money">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              </button>
+              <div class="nav-center-title">
+                <span class="nav-title-main">Refund Delayed</span>
+              </div>
+              <button class="nav-text-btn" id="s4-help-btn">Help</button>
+            </header>
+
+            <div class="screen-content scrollable">
+              <!-- Warning Hero Section -->
+              <div class="card warning-hero-card">
+                <div class="alert-icon-circle">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                </div>
+                
+                <h2 class="hero-screen-title text-danger">Your refund hasn't arrived yet</h2>
+                <p class="hero-supporting-text">
+                  We expected your refund to arrive by 28 September, but it hasn't been confirmed yet.
+                </p>
+              </div>
+
+              <!-- Transaction Diagnostic Grid -->
+              <div class="card details-spec-card">
+                <div class="card-header-row">
+                  <h3 class="section-title">Diagnostic Snapshot</h3>
+                  <span class="status-chip delayed">Delayed</span>
+                </div>
+
+                <div class="spec-rows">
+                  <div class="spec-row">
+                    <span class="spec-label">Refund amount</span>
+                    <span class="spec-val bold">₹2,800</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">Transaction</span>
+                    <span class="spec-val font-mono">XXXX1234</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">Started</span>
+                    <span class="spec-val">26 September</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">Expected resolution</span>
+                    <span class="spec-val">28 September</span>
+                  </div>
+                  <div class="spec-row highlight-delayed">
+                    <span class="spec-label">Current status</span>
+                    <span class="spec-val delayed-text">Delayed</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Honest Transparency Notice (Anti-BS guarantee) -->
+              <div class="card transparency-card">
+                <div class="transparency-header">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <span class="transparency-title">Honest Status Commitment</span>
+                </div>
+                <p class="transparency-desc">
+                  UPI settlement between inter-bank switches may experience verification delays. We do not make false assumptions about your money's exact node until your issuing bank acknowledges receipt.
+                </p>
+                <div class="actionable-hint">
+                  <p>We'll help you raise this issue with the transaction details already attached.</p>
+                </div>
+              </div>
+
+              <!-- Primary CTA -->
+              <div class="screen-footer-actions">
+                <button class="primary-btn warning-action-btn" id="btn-get-help">
+                  <span>Get help</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- ================= SCREEN 5: ESCALATE ISSUE ================= -->
+          <section id="screen-5" class="screen-view">
+            <!-- App Bar Header -->
+            <header class="app-nav-bar">
+              <button class="nav-icon-btn" id="s5-back-btn" aria-label="Back to Diagnostic">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              </button>
+              <div class="nav-center-title">
+                <span class="nav-title-main" id="s5-header-title">Report Issue</span>
+              </div>
+              <button class="nav-text-btn" id="s5-info-btn">Info</button>
+            </header>
+
+            <div class="screen-content scrollable">
+              
+              <!-- State A: Form / Pre-populated escalation view -->
+              <div id="escalation-form-state" class="state-container active">
+                <div class="page-intro-header">
+                  <div class="pill-indicator pill-red">Priority Assistance</div>
+                  <h2 class="page-main-heading">Report refund issue</h2>
+                  <p class="page-subtitle">We've pre-filled everything from your transaction logs so you don't have to re-explain.</p>
+                </div>
+
+                <!-- Pre-populated Form Card -->
+                <div class="card populated-ticket-card">
+                  <div class="card-header-row">
+                    <h3 class="section-title">Pre-attached Details</h3>
+                    <span class="verified-tag">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                      Verified
+                    </span>
+                  </div>
+
+                  <div class="spec-rows">
+                    <div class="spec-row">
+                      <span class="spec-label">Issue</span>
+                      <span class="spec-val bold accent-blue">Refund not received</span>
+                    </div>
+                    <div class="spec-row">
+                      <span class="spec-label">Amount</span>
+                      <span class="spec-val bold">₹2,800</span>
+                    </div>
+                    <div class="spec-row">
+                      <span class="spec-label">Transaction</span>
+                      <span class="spec-val font-mono">XXXX1234</span>
+                    </div>
+                    <div class="spec-row">
+                      <span class="spec-label">Started</span>
+                      <span class="spec-val">26 September</span>
+                    </div>
+                    <div class="spec-row">
+                      <span class="spec-label">Expected resolution</span>
+                      <span class="spec-val">28 September</span>
+                    </div>
+                    <div class="spec-row highlight-delayed">
+                      <span class="spec-label">Current status</span>
+                      <span class="spec-val delayed-text">Delayed</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Convenience reassurance banner -->
+                <div class="card reassurance-card-subtle">
+                  <div class="reassurance-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                  </div>
+                  <p class="reassurance-text">
+                    We'll send these transaction details with your request so you don't have to explain everything again.
+                  </p>
+                </div>
+
+                <!-- Primary CTA -->
+                <div class="screen-footer-actions">
+                  <button class="primary-btn escalate-btn" id="btn-escalate-issue">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    <span>Escalate this issue</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- State B: Confirmation state after escalating -->
+              <div id="escalation-confirmed-state" class="state-container">
+                <div class="confirmation-success-card">
+                  <div class="success-icon-badge">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+
+                  <h2 class="confirm-heading">Your issue has been raised</h2>
+                  
+                  <div class="ticket-id-pill">
+                    <span class="ticket-prefix">Ticket ID:</span>
+                    <span class="ticket-number">PTM-28491</span>
+                    <button class="copy-ticket-btn" id="copy-ticket-btn" title="Copy Ticket ID">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    </button>
+                  </div>
+
+                  <p class="confirm-subtext">
+                    We'll update you when we receive more information.
+                  </p>
+
+                  <div class="sla-info-box">
+                    <div class="sla-icon">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <div class="sla-text">
+                      <span class="sla-title">Bank Escalation Dispatched</span>
+                      <span class="sla-desc">NPCI / Bank reference #REV-9018 sent directly to issuing branch.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Next Actions -->
+                <div class="screen-footer-actions">
+                  <button class="primary-btn" id="btn-track-issue">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <span>Track issue</span>
+                  </button>
+
+                  <button class="subtle-link-btn" id="btn-return-home">
+                    <span>Back to Payment Status</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Phone Bottom Bar Home Indicator -->
+        <div class="home-indicator"></div>
+      </div>
+    </div>
+
+    <!-- Case Study Insights & Heuristics Drawer / Panel -->
+    <aside class="case-study-drawer" id="case-study-drawer">
+      <div class="drawer-header">
+        <div class="drawer-title-row">
+          <div class="mini-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div>
+            <h3 class="drawer-title">Product Design Case Study</h3>
+            <span class="drawer-sub">Paytm UPI • Delayed Refund Experience</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Problem Statement Callout -->
+      <div class="problem-statement-card">
+        <span class="card-micro-tag">The Core Problem</span>
+        <blockquote class="problem-quote">
+          “When a UPI transaction goes wrong, users don't always have enough clarity about what happened to their money, what is currently happening, who is responsible for the next step, and when they can expect resolution.”
+        </blockquote>
+      </div>
+
+      <!-- The 3 Guiding UX Heuristics -->
+      <div class="ux-principles-container">
+        <h4 class="principle-group-title">The 3 Core User Questions</h4>
+        
+        <div class="principle-card" id="card-p1">
+          <div class="principle-num">1</div>
+          <div class="principle-content">
+            <span class="principle-q">What happened?</span>
+            <p class="principle-ans">Answered in <strong>Screen 1 & 2</strong> via explicit transaction status, merchant approval confirmation, and chronological audit timestamps.</p>
+          </div>
+        </div>
+
+        <div class="principle-card" id="card-p2">
+          <div class="principle-num">2</div>
+          <div class="principle-content">
+            <span class="principle-q">Where is my money?</span>
+            <p class="principle-ans">Answered in <strong>Screen 3</strong> showing inter-bank pipeline state without overpromising, clarifying that Jiomart has already initiated release.</p>
+          </div>
+        </div>
+
+        <div class="principle-card" id="card-p3">
+          <div class="principle-num">3</div>
+          <div class="principle-content">
+            <span class="principle-q">What do I need to do?</span>
+            <p class="principle-ans">Answered in <strong>Screen 4 & 5</strong> with one-tap zero-friction escalation, eliminating manual copy-pasting of 12-digit UTRs.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Screen Inspector Context -->
+      <div class="live-screen-inspector" id="live-screen-inspector">
+        <h4 class="inspector-heading">Active Screen Insights</h4>
+        <div class="inspector-body" id="inspector-body">
+          <!-- Dynamic text injected by app.js based on active screen -->
+        </div>
+      </div>
+
+      <!-- Interactive Flow Shortcut Map -->
+      <div class="flow-shortcut-box">
+        <h4 class="shortcut-title">Prototype Navigation Map</h4>
+        <div class="flow-diagram-pills">
+          <span class="pill-node node-active" data-go="screen-1">1. Status</span>
+          <span class="pill-arrow">→</span>
+          <span class="pill-node" data-go="screen-2">2. Timeline</span>
+          <span class="pill-arrow">→</span>
+          <span class="pill-node" data-go="screen-3">3. Location</span>
+          <span class="pill-arrow">→</span>
+          <span class="pill-node" data-go="screen-4">4. Delayed</span>
+          <span class="pill-arrow">→</span>
+          <span class="pill-node" data-go="screen-5">5. Escalate</span>
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
