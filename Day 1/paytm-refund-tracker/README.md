@@ -101,8 +101,3 @@ Screen 1 (Payment Status)
 
 ---
 
-## 4. How to Run & Preview
-
-1. Open `C:\Users\abhishek jaiswal\.gemini\antigravity\scratch\paytm-refund-tracker\index.html` in any browser (Chrome, Edge, Safari, Firefox).
-2. The prototype displays a realistic iPhone mobile mockup alongside the **Product Case Study Inspector** on desktop displays.
-3. Test the flow by tapping the buttons sequentially, or use the top presentation bar to jump directly between screens during design reviews.
